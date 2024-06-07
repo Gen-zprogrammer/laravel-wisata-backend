@@ -21,5 +21,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('12345678'),
         ]);
+
+        //category factory
+        Category::factory(2)->create();
+
+        //product factory 100
+        Product::factory(100)->create();
     }
 }
