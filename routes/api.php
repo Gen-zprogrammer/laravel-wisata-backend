@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,4 @@ Route::apiResource('/api-products', ProductController::class)->middleware('auth:
 Route::apiResource('/api-categories', CategoryController::class)->middleware('auth:sanctum');
 
 //orders
-// Route::post('/api-orders', [OrderController::class, 'store'])->middleware('auth:sanctum');
+Route::post('/api-orders', [OrderController::class, 'store'])->middleware('auth:sanctum');

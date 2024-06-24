@@ -33,11 +33,11 @@ class ProductController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
-            'image' => 'required',
+            // 'image' => 'required',
             'criteria' => 'required',
-            'favorite' => 'required',
-            'status' => 'required',
-            'stock' => 'required',
+            // 'favorite' => 'required',
+            // 'status' => 'required',
+            // 'stock' => 'required',
         ]);
 
         // 'category_id',
@@ -53,13 +53,13 @@ class ProductController extends Controller
         $product = new Product;
         $product->category_id = $request->category_id;
         $product->name = $request->name;
-        $product->description = $request->description;
+        $product->description = '';
         $product->price = $request->price;
 
         $product->criteria = $request->criteria;
-        $product->favorite = $request->favorite;
-        $product->status = $request->status;
-        $product->stock = $request->stock;
+        $product->favorite = false;
+        $product->status = 'published';
+        $product->stock = 0;
         $product->save();
 
         //image
@@ -82,15 +82,18 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
 
-        $product->category_id = $request->category_id;
+        // $product->category_id = $request->category_id;
         $product->name = $request->name;
-        $product->description = $request->description;
+        // $product->description = $request->description;
         $product->price = $request->price;
-        $product->criteria = $request->criteria;
-        $product->favorite = $request->favorite;
-        $product->status = $request->status;
-        $product->stock = $request->stock;
+        // $product->criteria = $request->criteria;
+        // $product->favorite = $request->favorite;
+        // $product->status = $request->status;
+        // $product->stock = $request->stock;
         $product->save();
+
+        //product with category
+        $product = Product::with('category')->find($product->id);
 
         //check if image is not empty
         if ($request->image) {
